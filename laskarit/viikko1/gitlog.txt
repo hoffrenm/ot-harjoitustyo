@@ -1,0 +1,105 @@
+commit 8a0fac17a05dc2b3c4e8a7497a526e789aff3563
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:53:28 2019 +0200
+
+    file1 poistettu, file2 nimetty file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit edb1bcec589460a9a2892bceb0dd88f30d1ee704
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:43:45 2019 +0200
+
+    file1, file2, file3 lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 22c620417bf06478ad428d9a7af7a4adb026dd20
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:40:46 2019 +0200
+
+    muokkauksia eka.txt ja kolmas.txt
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit bc6925b51cb6f45c5c5ae14903402615f8628599
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:38:07 2019 +0200
+
+    toinen.txt poistettu, tiedosto.txt nimetty eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ toinen.txt              | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit ac6b92f5316723764f35815514bc9d642adf10a6
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:36:02 2019 +0200
+
+    tiedosto.txt tekstiä poistettu ja lisätty
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ffc4043c87f8de31a5eabe58d0952dee0b014e26
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:34:10 2019 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 154f4a202ceff626f757ed6ffc3511281dc02378
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:31:44 2019 +0200
+
+    stuff lisätty
+
+ stuff/asd.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c13522c28671b04004af644a0e97613c06d30b2e
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:31:05 2019 +0200
+
+    muutoksia toinen.txt ja kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 1bacf416968b5861b54833c9d2d42baa247ddb24
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:30:14 2019 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 32f9be8806014d7d2031b7d5011cec641cf66541
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:29:27 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit f08a839774e0e46c0866c7a58d6ea1fb27caf66f
+Author: Mika Hoffren <mika.hoffren@helsinki.fi>
+Date:   Mon Nov 4 15:28:51 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
