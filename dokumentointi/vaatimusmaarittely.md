@@ -10,10 +10,11 @@ Sovelluksella on vain yhden tyyppinen käyttäjä: normaali käyttäjä, ts. pel
 
 ## Toiminnallisuudet
 
-- pelaajalle generoidaan peliruudukko, johon numeroita voi täyttää. Osa numeroista on asetettu valmiiksi. Ruudukko on 3x3 osaruudukoista koostuva.
-- perusversiossa sovellus ei anna tehdä vääriä siirtoja
-- pelaaja pelaa kelloa vastaan
-- Onnistuneesta ratkaisusta pelaajaa pyydetään syöttämään nimimerkki, joka talletetaan ajan kanssa tilastoihin.
+- [x] (tehty) pelaajalle generoidaan peliruudukko, johon numeroita voi täyttää. Osa numeroista on asetettu valmiiksi. Ruudukko on 3x3 osaruudukoista koostuva.
+- [x] (tehty) perusversiossa sovellus ei anna tehdä vääriä siirtoja.
+- [ ] Peli päättyy kun ruudukko on täytetty sääntöjen mukaisesti
+- [ ] pelaaja pelaa kelloa vastaan.
+- [ ] Onnistuneesta ratkaisusta pelaajaa pyydetään syöttämään nimimerkki, joka talletetaan ajan kanssa tilastoihin.
 
 ## kehitysideoita
 
