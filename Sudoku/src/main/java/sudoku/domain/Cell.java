@@ -16,13 +16,24 @@ public class Cell {
     private int column;
     private int subgrid;
 
-    public Cell(int value, int row, int column, int subgrid) {
+    public Cell(int value, int row, int column) {
         this.value = value;
         this.row = row;
         this.column = column;
-        this.subgrid = subgrid;
+        this.subgrid = calculateSubgrid(row, column);
     }
-
+    
+    private int calculateSubgrid(int row, int col) {
+        int rowGrid = row / 3;
+        int colGrid = col / 3;
+        
+        return colGrid + rowGrid * 3;
+    }
+    
+    public void resetCellValue() {
+        this.value = 0;
+    }
+    
     public int getValue() {
         return value;
     }
