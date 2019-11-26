@@ -11,3 +11,5 @@ Sudoku on logiikkapeli, jossa pelaaja pyrkii asettelemaan numerot 1-9 9x9 ruuduk
 [vaatimusmäärittely](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
 [tuntikirjanpito](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
+
+[arkkitehtuuri](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
