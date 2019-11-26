@@ -25,23 +25,48 @@ public class BoardHelperTest {
     public void setUp() {
         helper = new BoardHelper();
         board = new Board();
-        for (int i = 1; i < 9; i *= 2) {
-            board.getCells().add(new Cell(i, 1, i, i));
-        }
+        helper.initializeTestSudoku(board);
     }
 
     @Test
     public void RowMissingValueCanBeSet() {
-        System.out.println(board.toString());
-        Cell cellToBePlaced = new Cell(0, 1, 3, 3);
-        boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 3);
+        Cell cellToBePlaced = new Cell(0, 1, 3);
+        boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 2);
         assertTrue(canBePlaced);
     }
     
     @Test
     public void RowExistingValueIsRejected() {
-        Cell cellToBePlaced = new Cell(0, 1, 3, 3);
-        boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 8);
+        Cell cellToBePlaced = new Cell(0, 1, 2);
+        boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 4);
+        assertFalse(canBePlaced);
+    }
+    
+    @Test
+    public void ColumnMissingValueCanBeSet() {
+        Cell cellToBePlaced = new Cell(0, 6, 5);
+        boolean canBePlaced = helper.canBeInsertedToColumn(board, cellToBePlaced, 9);
+        assertTrue(canBePlaced);
+    }
+    
+    @Test
+    public void ColumnExistingValueIsRejected() {
+        Cell cellToBePlaced = new Cell(0, 6, 5);
+        boolean canBePlaced = helper.canBeInsertedToColumn(board, cellToBePlaced, 7);
+        assertFalse(canBePlaced);
+    }
+    
+    @Test
+    public void subgridMissingValueCanBeSet() {
+        Cell cellToBePlaced = new Cell(0, 8, 0);
+        boolean canBePlaced = helper.canBeInsertedToSubgrid(board, cellToBePlaced, 6);
+        assertTrue(canBePlaced);
+    }
+    
+    @Test
+    public void subgridExistingValueIsRejected() {
+        Cell cellToBePlaced = new Cell(0, 4, 4);
+        boolean canBePlaced = helper.canBeInsertedToSubgrid(board, cellToBePlaced, 3);
         assertFalse(canBePlaced);
     }
 
