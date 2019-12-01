@@ -50,9 +50,9 @@ public class SudokuUi extends Application {
         buttons.getChildren().addAll(playBtn, scoresBtn, exitBtn);
 
         GridPane boardGrid = initialize(board);
-        
+
         playBtn.setOnAction((event) -> {
-            board.newSudoku(35);
+            board.newSudoku(80);
             layout.setCenter(initialize(board));
         });
 
@@ -94,13 +94,13 @@ public class SudokuUi extends Application {
         panel.setPrefSize(40, 40);
         panel.setPadding(new Insets(1, 1, 1, 1));
         panel.setUserData(cell);
+
         int value = cell.getValue();
 
         if (value == 0) {
             TextField input = new TextField("");
             input.setAlignment(Pos.CENTER);
             input.setPrefSize(40, 40);
-            
 
             UnaryOperator<TextFormatter.Change> filter = change -> {
                 String newValue = change.getControlNewText();
@@ -119,7 +119,6 @@ public class SudokuUi extends Application {
                     if (cell.getValue() == 0) {
                         if (board.setValue(cell, Integer.parseInt(newValue))) {
                             System.out.println("Value has been set: " + cell.toString());
-                            
 
                         } else {
                             // fancy fading effect to notify user that current value cannot be set to field
@@ -130,7 +129,7 @@ public class SudokuUi extends Application {
                             ft.setCycleCount(2);
                             ft.setAutoReverse(true);
                             ft.play();
-                            
+
                             return null;
                         }
                     }
@@ -142,7 +141,14 @@ public class SudokuUi extends Application {
             };
 
             input.setTextFormatter(new TextFormatter<>(filter));
-            input.textProperty().addListener((obv, oldValue, newValue) -> input.setText(newValue));
+            input.textProperty().addListener((obv, oldValue, newValue) -> {
+                input.setText(newValue);
+                if (board.isFinished()) {
+                    System.out.println("Baord full, end game");
+                    System.out.println(panel.getParent());
+                }
+            });
+            
             panel.getChildren().add(input);
         } else {
             panel.getChildren().add(new Label(String.valueOf(cell.getValue())));
@@ -151,7 +157,7 @@ public class SudokuUi extends Application {
 
         return panel;
     }
-    
+
     @Override
     public void stop() {
         System.out.println("stage closed");
