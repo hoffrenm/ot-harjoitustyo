@@ -23,9 +23,9 @@ public class Board {
         generateCells();
     }
 
-    public void newSudoku(int cells) {
+    public void newSudoku(int numOfcells) {
         generateCells();
-        helper.initializeBoard(this, cells);
+        helper.initializeBoard(this, numOfcells);
     }
     public Cell getCellInGrid(int rowIndex, int colIndex) {
         return cells.stream()
@@ -43,6 +43,10 @@ public class Board {
                 cells.add(cell);
             }
         }
+    }
+    
+    public boolean isFinished() {
+        return helper.hasNoEmptyValues(this);
     }
 
     public boolean setValue(Cell cell, int value) {
