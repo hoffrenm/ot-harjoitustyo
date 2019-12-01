@@ -46,24 +46,12 @@ public class Cell {
         return column;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
     public int getRow() {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public int getSubgrid() {
         return subgrid;
-    }
-
-    public void setSubgrid(int subgrid) {
-        this.subgrid = subgrid;
     }
 
     @Override
