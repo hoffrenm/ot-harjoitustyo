@@ -22,5 +22,6 @@
 |        |2       | UI:n toiminnallisuus pelin loppumiselle kun ruudukko on täysi|
 |        |1       | UI:n kosmeettista säätämistä
 |        |0.5     | Sekvenssikaavio käyttäjän syötteelle
+|        |0.5     | 1. release, komentorivikäskyjen täydennys
 |        |        | |
-|yhteensä|32.5    | |
+|yhteensä|33      | |
