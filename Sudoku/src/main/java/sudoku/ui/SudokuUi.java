@@ -47,6 +47,7 @@ public class SudokuUi extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        HBox diff = new HBox();
         VBox buttons = new VBox();
         buttons.setPrefWidth(100);
         buttons.setPadding(new Insets(20, 20, 40, 20));
@@ -65,12 +66,48 @@ public class SudokuUi extends Application {
         GridPane boardGrid = initialize(board);
 
         playBtn.setOnAction((event) -> {
+            buttons.getChildren().remove(playBtn);
+            buttons.getChildren().add(0, diff);
+        });
+
+        
+        diff.setSpacing(3);
+        diff.setAlignment(Pos.CENTER);
+        Button easy = new Button("Easy");
+        Button medium = new Button("Medium");
+        Button hard = new Button("Hard");
+        
+        easy.setMinWidth(diff.getPrefWidth());
+        medium.setMinWidth(diff.getPrefWidth());
+        hard.setMinWidth(diff.getPrefWidth());
+        
+        diff.getChildren().addAll(easy, medium, hard);
+        
+        easy.setOnAction(e -> {
+            buttons.getChildren().remove(diff);
+            buttons.getChildren().add(0, playBtn);
+            board.newSudoku(100);
+            clock.reset();
+            clock.start();
+            root.setCenter(initialize(board));
+        });
+        medium.setOnAction(e -> {
+            buttons.getChildren().remove(diff);
+            buttons.getChildren().add(0, playBtn);
             board.newSudoku(50);
             clock.reset();
             clock.start();
             root.setCenter(initialize(board));
         });
-        
+        hard.setOnAction(e -> {
+            buttons.getChildren().remove(diff);
+            buttons.getChildren().add(0, playBtn);
+            board.newSudoku(35);
+            clock.reset();
+            clock.start();
+            root.setCenter(initialize(board));
+        });
+
         HBox top = new HBox();
         top.setPadding(new Insets(20, 40, 0, 40));
         top.setSpacing(10);
@@ -79,7 +116,7 @@ public class SudokuUi extends Application {
         exitBtn.setOnAction((event) -> {
             stage.close();
         });
-        
+
         root.setTop(top);
         root.setBottom(buttons);
         root.setCenter(boardGrid);
@@ -142,7 +179,7 @@ public class SudokuUi extends Application {
                     cell.resetCellValue();
                     return change;
                 }
-                
+
                 if (newLegth == oldLength) {
                     return null;
                 }
@@ -175,7 +212,7 @@ public class SudokuUi extends Application {
             input.setTextFormatter(new TextFormatter<>(filter));
             input.textProperty().addListener((obv, oldValue, newValue) -> {
                 input.setText(newValue);
-                
+
                 if (board.isFinished()) {
                     clock.stop();
                     System.out.println("Baord full, end game");
@@ -183,23 +220,23 @@ public class SudokuUi extends Application {
                     box.setAlignment(Pos.CENTER);
                     VBox end = new VBox();
                     Label label1 = new Label("Congratulations, Sudoku successfully solved!\n"
-                                            + clock.getTimer().getText());
+                            + clock.getTimer().getText());
                     label1.setTextFill(Color.WHITESMOKE);
                     label1.setFont(new Font("Arial", 18));
                     Button ok = new Button("ok");
-                    
-                    ok.setOnAction(event ->{ 
+
+                    ok.setOnAction(event -> {
                         clock.reset();
                         board.newSudoku(0);
                         root.setCenter(initialize(board));
                     });
-                    
+
                     end.getChildren().addAll(label1, ok);
                     end.setPadding(new Insets(10, 10, 10, 10));
                     end.setSpacing(5);
                     end.setAlignment(Pos.CENTER);
                     box.getChildren().add(end);
-                    
+
                     root.setCenter(box);
                 }
             });
