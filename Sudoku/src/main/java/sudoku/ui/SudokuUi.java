@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,37 +31,64 @@ import sudoku.domain.Cell;
  */
 public class SudokuUi extends Application {
 
-    private static final int HEIGHT = 450;
+    private static final int HEIGHT = 550;
     private static final int WIDTH = 400;
     private final Board board;
+    private final StackPane root;
+    private final Timer clock;
 
     public SudokuUi() {
+        root = new StackPane();
         this.board = new Board();
-        board.newSudoku(35);
+        this.clock = new Timer();
+        board.newSudoku(81);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         BorderPane layout = new BorderPane();
         VBox buttons = new VBox();
+        buttons.setPrefWidth(100);
+        buttons.setPadding(new Insets(20, 20, 40, 20));
+        buttons.setSpacing(5);
+        buttons.setAlignment(Pos.CENTER);
+
         Button playBtn = new Button("New game");
         Button scoresBtn = new Button("Scores");
         Button exitBtn = new Button("Exit");
+        playBtn.setMinWidth(buttons.getPrefWidth());
+        scoresBtn.setMinWidth(buttons.getPrefWidth());
+        exitBtn.setMinWidth(buttons.getPrefWidth());
 
         buttons.getChildren().addAll(playBtn, scoresBtn, exitBtn);
 
         GridPane boardGrid = initialize(board);
 
         playBtn.setOnAction((event) -> {
-            board.newSudoku(80);
+            board.newSudoku(45);
+            clock.reset();
+            clock.start();
             layout.setCenter(initialize(board));
         });
+        
+        HBox top = new HBox();
+        top.setPadding(new Insets(20, 10, 10, 10));
+        top.setSpacing(10);
+        top.getChildren().add(clock.getTimer());
 
+        exitBtn.setOnAction((event) -> {
+            stage.close();
+        });
+        
+        layout.setTop(top);
         layout.setBottom(buttons);
         layout.setCenter(boardGrid);
+        BorderPane.setAlignment(layout.getTop(), Pos.TOP_CENTER);
         layout.setBackground(new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        Scene scene = new Scene(layout);
+        root.getChildren().add(layout);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Sudoku");
         stage.show();
@@ -68,6 +96,7 @@ public class SudokuUi extends Application {
 
     public GridPane initialize(Board board) {
         GridPane majorGrid = new GridPane();
+        majorGrid.setMinSize(0, 0);
         majorGrid.setPadding(new Insets(20, 20, 20, 20));
 
         for (int i = 0; i < 3; i++) {
@@ -93,7 +122,6 @@ public class SudokuUi extends Application {
         panel.setAlignment(Pos.CENTER);
         panel.setPrefSize(40, 40);
         panel.setPadding(new Insets(1, 1, 1, 1));
-        panel.setUserData(cell);
 
         int value = cell.getValue();
 
@@ -119,7 +147,6 @@ public class SudokuUi extends Application {
                     if (cell.getValue() == 0) {
                         if (board.setValue(cell, Integer.parseInt(newValue))) {
                             System.out.println("Value has been set: " + cell.toString());
-
                         } else {
                             // fancy fading effect to notify user that current value cannot be set to field
                             // todo: refactor to dedicated method and make it red
@@ -133,7 +160,6 @@ public class SudokuUi extends Application {
                             return null;
                         }
                     }
-
                     return change;
                 } else {
                     return null;
@@ -145,10 +171,13 @@ public class SudokuUi extends Application {
                 input.setText(newValue);
                 if (board.isFinished()) {
                     System.out.println("Baord full, end game");
+
+                    root.getChildren().add(panel);
+
                     System.out.println(panel.getParent());
                 }
             });
-            
+
             panel.getChildren().add(input);
         } else {
             panel.getChildren().add(new Label(String.valueOf(cell.getValue())));
