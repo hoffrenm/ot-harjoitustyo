@@ -12,5 +12,15 @@
 |        |2       | Lisää testejä BoardHelperille, ensimmäiset testit Boardille, muutama valmis ruudukko pelattavaksi ja apuruudukko testausta varten|
 |        |0.5     | Checkstylen konfigurointi ja virheiden korjaus|
 |        |1       | Mahdollisuus arpoa uusi ruudukko pelattavaksi|
+|1.12    |2       | Testejä Cell-luokalle|
+|        |1       | Metodit ja testit täyden ruudukon tilanteessa|
+|        |1       | Muuttuneiden metodien sovittaminen käyttöliittymään|
+|2.12    |0.5     | Komentorivikäskyjen lisäys dokumentaatioon|
+|3.12    |1       | Puuttuvia testejä Board-luokan uusille metodeille|
+|        |2       | Timer-luokka kuluneen ajan hallinnointiin|
+|        |2       | Ajanmittauksen saattaminen toimimaan UI:ssa
+|        |2       | UI:n toiminnallisuus pelin loppumiselle kun ruudukko on täysi|
+|        |1       | UI:n kosmeettista säätämistä
+|        |0.5     | Sekvenssikaavio käyttäjän syötteelle
 |        |        | |
-|yhteensä|19.5    | |
+|yhteensä|32.5    | |
