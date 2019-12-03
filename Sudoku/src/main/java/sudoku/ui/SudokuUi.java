@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sudoku.domain.Board;
@@ -34,19 +35,18 @@ public class SudokuUi extends Application {
     private static final int HEIGHT = 550;
     private static final int WIDTH = 400;
     private final Board board;
-    private final StackPane root;
+    private final BorderPane root;
     private final Timer clock;
 
     public SudokuUi() {
-        root = new StackPane();
+        root = new BorderPane();
         this.board = new Board();
         this.clock = new Timer();
-        board.newSudoku(81);
+        board.newSudoku(0);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        BorderPane layout = new BorderPane();
         VBox buttons = new VBox();
         buttons.setPrefWidth(100);
         buttons.setPadding(new Insets(20, 20, 40, 20));
@@ -65,14 +65,14 @@ public class SudokuUi extends Application {
         GridPane boardGrid = initialize(board);
 
         playBtn.setOnAction((event) -> {
-            board.newSudoku(45);
+            board.newSudoku(50);
             clock.reset();
             clock.start();
-            layout.setCenter(initialize(board));
+            root.setCenter(initialize(board));
         });
         
         HBox top = new HBox();
-        top.setPadding(new Insets(20, 10, 10, 10));
+        top.setPadding(new Insets(20, 40, 0, 40));
         top.setSpacing(10);
         top.getChildren().add(clock.getTimer());
 
@@ -80,13 +80,12 @@ public class SudokuUi extends Application {
             stage.close();
         });
         
-        layout.setTop(top);
-        layout.setBottom(buttons);
-        layout.setCenter(boardGrid);
-        BorderPane.setAlignment(layout.getTop(), Pos.TOP_CENTER);
-        layout.setBackground(new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-        root.getChildren().add(layout);
+        root.setTop(top);
+        root.setBottom(buttons);
+        root.setCenter(boardGrid);
+        BorderPane.setAlignment(boardGrid, Pos.CENTER);
+        BorderPane.setAlignment(root.getTop(), Pos.TOP_CENTER);
+        root.setBackground(new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -96,6 +95,7 @@ public class SudokuUi extends Application {
 
     public GridPane initialize(Board board) {
         GridPane majorGrid = new GridPane();
+        majorGrid.setAlignment(Pos.CENTER);
         majorGrid.setMinSize(0, 0);
         majorGrid.setPadding(new Insets(20, 20, 20, 20));
 
@@ -117,10 +117,11 @@ public class SudokuUi extends Application {
         return majorGrid;
     }
 
+    // todo: refactor this monstrosity
     public StackPane createPanel(Cell cell) {
         StackPane panel = new StackPane();
         panel.setAlignment(Pos.CENTER);
-        panel.setPrefSize(40, 40);
+        panel.setPrefSize(45, 45);
         panel.setPadding(new Insets(1, 1, 1, 1));
 
         int value = cell.getValue();
@@ -128,7 +129,8 @@ public class SudokuUi extends Application {
         if (value == 0) {
             TextField input = new TextField("");
             input.setAlignment(Pos.CENTER);
-            input.setPrefSize(40, 40);
+            input.setFont(new Font("Arial", 20));
+            input.setPrefSize(45, 45);
 
             UnaryOperator<TextFormatter.Change> filter = change -> {
                 String newValue = change.getControlNewText();
@@ -139,6 +141,10 @@ public class SudokuUi extends Application {
                 if (newLegth < oldLength) {
                     cell.resetCellValue();
                     return change;
+                }
+                
+                if (newLegth == oldLength) {
+                    return null;
                 }
 
                 if (Pattern.compile("[1-9]{1}").matcher(newValue).matches()) {
@@ -169,18 +175,40 @@ public class SudokuUi extends Application {
             input.setTextFormatter(new TextFormatter<>(filter));
             input.textProperty().addListener((obv, oldValue, newValue) -> {
                 input.setText(newValue);
+                
                 if (board.isFinished()) {
+                    clock.stop();
                     System.out.println("Baord full, end game");
-
-                    root.getChildren().add(panel);
-
-                    System.out.println(panel.getParent());
+                    StackPane box = new StackPane();
+                    box.setAlignment(Pos.CENTER);
+                    VBox end = new VBox();
+                    Label label1 = new Label("Congratulations, Sudoku successfully solved!\n"
+                                            + clock.getTimer().getText());
+                    label1.setTextFill(Color.WHITESMOKE);
+                    label1.setFont(new Font("Arial", 18));
+                    Button ok = new Button("ok");
+                    
+                    ok.setOnAction(event ->{ 
+                        clock.reset();
+                        board.newSudoku(0);
+                        root.setCenter(initialize(board));
+                    });
+                    
+                    end.getChildren().addAll(label1, ok);
+                    end.setPadding(new Insets(10, 10, 10, 10));
+                    end.setSpacing(5);
+                    end.setAlignment(Pos.CENTER);
+                    box.getChildren().add(end);
+                    
+                    root.setCenter(box);
                 }
             });
 
             panel.getChildren().add(input);
         } else {
-            panel.getChildren().add(new Label(String.valueOf(cell.getValue())));
+            Label num = new Label(String.valueOf(cell.getValue()));
+            num.setFont(new Font("Arial", 20));
+            panel.getChildren().add(num);
             panel.setBackground(new Background(new BackgroundFill(Color.GAINSBORO, CornerRadii.EMPTY, new Insets(1, 1, 1, 1))));
         }
 
