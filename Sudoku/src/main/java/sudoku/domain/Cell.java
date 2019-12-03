@@ -12,9 +12,9 @@ package sudoku.domain;
 public class Cell {
     
     private int value;
-    private int row;
-    private int column;
-    private int subgrid;
+    private final int row;
+    private final int column;
+    private final int subgrid;
 
     public Cell(int value, int row, int column) {
         this.value = value;
@@ -57,6 +57,39 @@ public class Cell {
     @Override
     public String toString() {
         return "Cell{" + "value=" + value + ", row=" + row + ", column=" + column + ", subgrid=" + subgrid + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.row;
+        hash = 79 * hash + this.column;
+        hash = 53 * hash + this.subgrid;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cell other = (Cell) obj;
+        if (this.row != other.row) {
+            return false;
+        }
+        if (this.column != other.column) {
+            return false;
+        }
+        if (this.subgrid != other.subgrid) {
+            return false;
+        }
+        return true;
     }
     
 }
