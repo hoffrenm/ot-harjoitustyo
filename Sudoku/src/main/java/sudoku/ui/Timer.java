@@ -8,11 +8,7 @@ package sudoku.ui;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -33,8 +29,8 @@ public class Timer {
         this.seconds = 0;
         this.minutes = 0;
         this.label = new Label("Time: 00:00");
-        label.setFont(new Font("Arial", 30));
-        label.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        label.setFont(new Font("Arial", 34));
+        label.setTextFill(Color.WHITESMOKE);
         init();
     }
 
