@@ -12,12 +12,12 @@ Sovelluksella on vain yhden tyyppinen käyttäjä: normaali käyttäjä, ts. pel
 
 - [x] (tehty) pelaajalle generoidaan peliruudukko, johon numeroita voi täyttää. Osa numeroista on asetettu valmiiksi. Ruudukko on 3x3 osaruudukoista koostuva.
 - [x] (tehty) perusversiossa sovellus ei anna tehdä vääriä siirtoja.
-- [ ] Peli päättyy kun ruudukko on täytetty sääntöjen mukaisesti
-- [ ] pelaaja pelaa kelloa vastaan.
+- [x] (tehty viikko5) Pelaaja voi valita vaikeusasteen
+- [x] (tehty viikko5) Peli päättyy kun ruudukko on täytetty sääntöjen mukaisesti
+- [x] (tehty viikko5) pelaaja pelaa kelloa vastaan.
 - [ ] Onnistuneesta ratkaisusta pelaajaa pyydetään syöttämään nimimerkki, joka talletetaan ajan kanssa tilastoihin.
 
 ## kehitysideoita
 
-- vaikeusasteen valinta eli valmiiksi asetettujen numeroiden määrä
 - eri tyyppisiä sudokuja, 2x2, 4x4 osaruudukoista
 - vaikeusasteen myötä sallii virheelliset siirrot
