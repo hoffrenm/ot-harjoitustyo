@@ -5,11 +5,11 @@
  */
 package domain;
 
-import org.junit.Assert;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import sudoku.domain.Board;
+import sudoku.domain.Cell;
 import sudoku.logics.BoardHelper;
 
 /**
@@ -25,25 +25,68 @@ public class BoardTest {
     public void setUp() {
         helper = new BoardHelper();
         board = new Board();
-        helper.initializeBoard(board, 30);
     }
     
     @Test
     public void boardContains81Cells() {
         int amountOfCells = board.getCells().size();
-        Assert.assertEquals(81, amountOfCells);
+        assertEquals(81, amountOfCells);
+    }
+    
+    @Test
+    public void boardIsEmptyAtStart() {
+        boolean empty = board.getCells()
+                .stream()
+                .noneMatch(c -> c.getValue() != 0);
+        assertTrue(empty);
     }
     
     @Test
     public void atleastSomeCellValuesAreSet() {
+        helper.initializeBoard(board, 35);
         long revealedValues = board.getCells().stream().filter(c -> c.getValue() != 0).count();
         assertTrue(revealedValues > 20);
     }
     
     @Test
     public void mostOfCellsAreHidden() {
+        helper.initializeBoard(board, 35);
         long hiddenValues = board.getCells().stream().filter(c -> c.getValue() == 0).count();
         assertTrue(hiddenValues > 45);
     }
     
+    @Test
+    public void cellCanBeRetrievedByCoordinates() {
+        Cell cell = new Cell(0, 1, 5);
+        Cell found = board.getCellInGrid(1, 5);
+        assertEquals(found, cell);
+    }
+    
+    @Test
+    public void validValueCanBeSet() {
+        Cell cell = board.getCellInGrid(4, 8);
+        boolean set = board.setValue(cell, 6);
+        assertTrue(set);
+        assertEquals(6, cell.getValue());
+    }
+    
+    @Test
+    public void invalidValueIsRejected() {
+        Cell firstCell = board.getCellInGrid(1, 8);
+        Cell secondCell = board.getCellInGrid(4, 8);
+        board.setValue(firstCell, 6);
+        boolean notSet = board.setValue(secondCell, 6);
+        assertFalse(notSet);
+        assertEquals(0, secondCell.getValue());
+    }
+    
+    @Test
+    public void fullBoardIsFinished() {
+        // todo
+    }
+    
+    @Test
+    public void unfinishedGameHasMissingValues() {
+        // todo
+    }
 }
