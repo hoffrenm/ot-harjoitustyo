@@ -25,7 +25,7 @@ Käskyt tulee suorittaa projektin juurihakemistossa.
 ```
 mvn compile exec:java -Dexec.mainClass=sudoku.Main
 ```
-#### Suoritettavana jar-tiedoston luonti
+#### Suoritettavan jar-tiedoston luonti
 ```
 mvn package
 ```
@@ -49,3 +49,10 @@ Testikattavuusraportti generoituu tiedostoon *target/site/jacoco/index.html*
 mvn jxr:jxr checkstyle:checkstyle
 ```
 Checkstyletarkastusraportti generoituu tiedostoon *target/site/checkstyle.html*
+
+#### Javadocin generointi
+```
+mvn javadoc:javadoc
+```
+Javadocia pääsee tarkastelemaan tiedostosta *target/site/apidocs/index.html*
+
