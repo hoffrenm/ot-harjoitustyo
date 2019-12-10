@@ -1,5 +1,6 @@
 package sudoku.ui;
 
+import java.util.List;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.animation.FadeTransition;
@@ -17,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -25,6 +27,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import sudoku.domain.Board;
 import sudoku.domain.Cell;
+import sudoku.domain.Score;
+import sudoku.logics.ScoreService;
 
 /**
  *
@@ -37,11 +41,13 @@ public class SudokuUi extends Application {
     private final Board board;
     private final BorderPane root;
     private final Timer clock;
+    private final ScoreService scoreService;
 
     public SudokuUi() {
         root = new BorderPane();
         this.board = new Board();
         this.clock = new Timer();
+        this.scoreService = new ScoreService();
         board.newSudoku(0);
     }
 
@@ -64,25 +70,29 @@ public class SudokuUi extends Application {
         buttons.getChildren().addAll(playBtn, scoresBtn, exitBtn);
 
         GridPane boardGrid = initialize(board);
+        boardGrid.setId("playboard");
+
+        scoresBtn.setOnAction((event) -> {
+            root.setCenter(scorePanel(scoreService.getScores()));
+        }); 
 
         playBtn.setOnAction((event) -> {
             buttons.getChildren().remove(playBtn);
             buttons.getChildren().add(0, diff);
         });
 
-        
         diff.setSpacing(3);
         diff.setAlignment(Pos.CENTER);
         Button easy = new Button("Easy");
         Button medium = new Button("Medium");
         Button hard = new Button("Hard");
-        
+
         easy.setMinWidth(diff.getPrefWidth());
         medium.setMinWidth(diff.getPrefWidth());
         hard.setMinWidth(diff.getPrefWidth());
-        
+
         diff.getChildren().addAll(easy, medium, hard);
-        
+
         easy.setOnAction(e -> {
             buttons.getChildren().remove(diff);
             buttons.getChildren().add(0, playBtn);
@@ -215,7 +225,6 @@ public class SudokuUi extends Application {
 
                 if (board.isFinished()) {
                     clock.stop();
-                    System.out.println("Baord full, end game");
                     StackPane box = new StackPane();
                     box.setAlignment(Pos.CENTER);
                     VBox end = new VBox();
@@ -223,17 +232,21 @@ public class SudokuUi extends Application {
                             + clock.getTimer().getText());
                     label1.setTextFill(Color.WHITESMOKE);
                     label1.setFont(new Font("Arial", 18));
-                    Button ok = new Button("ok");
+                    Button submit = new Button("submit");
 
-                    ok.setOnAction(event -> {
+                    Label info = new Label("Enter your name to save result");
+                    TextField name = new TextField();
+
+                    submit.setOnAction(event -> {
+                        scoreService.addResult(name.getText(), clock.getTime(), "placeholder");
                         clock.reset();
                         board.newSudoku(0);
                         root.setCenter(initialize(board));
                     });
 
-                    end.getChildren().addAll(label1, ok);
+                    end.getChildren().addAll(label1, info, name, submit);
                     end.setPadding(new Insets(10, 10, 10, 10));
-                    end.setSpacing(5);
+                    end.setSpacing(10);
                     end.setAlignment(Pos.CENTER);
                     box.getChildren().add(end);
 
@@ -252,9 +265,48 @@ public class SudokuUi extends Application {
         return panel;
     }
 
+    public BorderPane scorePanel(List<Score> scores) {
+        BorderPane scoreBoard = new BorderPane();
+        scoreBoard.setPrefSize(150, 150);
+
+        Label name = new Label("Name");
+        name.setFont(new Font("Arial", 32));
+        Label time = new Label("Time");
+        time.setFont(new Font("Arial", 32));
+        Label diff = new Label("Difficulty");
+        diff.setFont(new Font("Arial", 32));
+
+        HBox stats = new HBox();
+        stats.setPadding(new Insets(10, 10, 10, 10));
+        stats.setSpacing(50);
+
+        VBox names = new VBox();
+        VBox times = new VBox();
+        VBox levels = new VBox();
+
+        names.getChildren().add(name);
+        times.getChildren().add(time);
+        levels.getChildren().add(diff);
+
+        for (Score score : scores) {
+            names.getChildren().add(new Label(score.getName()));
+            times.getChildren().add(new Label(score.getTime()));
+            levels.getChildren().add(new Label(score.getLevel()));
+        }
+
+        stats.getChildren().addAll(names, times, levels);
+        stats.setAlignment(Pos.CENTER);
+
+        scoreBoard.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, new CornerRadii(15), new Insets(1, 1, 1, 1))));
+        scoreBoard.setCenter(stats);
+
+        return scoreBoard;
+    }
+
     @Override
-    public void stop() {
-        System.out.println("stage closed");
+    public void stop() throws Exception {
+        System.out.println("Stage closed");
+        scoreService.saveScores();
     }
 
     public static void main(String[] args) {
