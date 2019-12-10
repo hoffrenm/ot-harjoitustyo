@@ -10,7 +10,8 @@ import sudoku.dao.FileScore;
 import sudoku.domain.Score;
 
 /**
- *
+ *  Offers methods to handle score related functions in user interface
+ * 
  * @author Mika Hoffren
  */
 public class ScoreService {
@@ -23,13 +24,31 @@ public class ScoreService {
         this.scores = fileScore.getScores();
     }
     
+    /**
+    * Scores of games that have been read from the file.
+    * 
+    * @return scores as list
+    */
     public List<Score> getScores() {
         return scores;
     }
+    
+    /**
+     * adds result to scoreboard
+     * 
+     * @param name name of player
+     * @param time time at completion of a game
+     * @param level difficulty level
+     */
     public void addResult(String name, String time, String level) {
         scores.add(new Score(name, time, level));
     }
     
+    /**
+     * Save all the stored scores. Method invokes file writer.
+     * 
+     * @throws Exception throw IOException 
+     */
     public void saveScores() throws Exception {
         fileScore.save(scores);
     }

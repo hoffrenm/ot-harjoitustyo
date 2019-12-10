@@ -13,7 +13,8 @@ import java.util.Scanner;
 import sudoku.domain.Score;
 
 /**
- *
+ * Handles all functions related to reading and writing scores to file.
+ * 
  * @author Mika Hoffren
  */
 public class FileScore {
@@ -21,6 +22,12 @@ public class FileScore {
     private String file;
     private List<Score> scores;
 
+    /**
+     * Reads file once upon construction from filename that is provided as parameter. If file doesn't exists 
+     * no file will be read nor created. File is supposed to exists in root directory.
+     * 
+     * @param file filename
+     */
     public FileScore(String file) {
         this.file = file;
         this.scores = new ArrayList<>();
@@ -42,6 +49,12 @@ public class FileScore {
         }
     }
     
+    /**
+     * Saves all the scores in the list. Writes over existing resource to 
+     * root directory.
+     * 
+     * @param scores list of scores to save.
+     */
     public void save(List<Score> scores) {
         try (FileWriter writer = new FileWriter(new File(file))) {
             for (Score score : scores) {
@@ -52,6 +65,12 @@ public class FileScore {
         }
     }
     
+    /**
+     * Scores read from file. If file was not present, empty list of 
+     * scores will be returned.
+     * 
+     * @return scores from read from file
+     */
     public List<Score> getScores() {
         return scores;
     }
