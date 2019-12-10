@@ -69,5 +69,9 @@ public class Timer {
     public Label getTimer() {
         return this.label;
     }
+    
+    public String getTime() {
+        return label.getText().replace("Time ", "");
+    }
 
 }
