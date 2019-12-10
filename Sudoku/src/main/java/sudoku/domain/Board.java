@@ -107,9 +107,4 @@ public class Board {
         return cells;
     }
 
-    @Override
-    public String toString() {
-        return "Board{" + "cells=" + cells + '}';
-    }
-
 }
