@@ -9,13 +9,25 @@ package sudoku.domain;
  *
  * @author hoffrenm
  */
+
+/**
+ * Represent singular cell in Sudoku-game
+ */
 public class Cell {
     
     private int value;
     private final int row;
     private final int column;
     private final int subgrid;
-
+    
+    /**
+     * Creates a new cell with provided parameters. Subgrid of cell
+     * is calculated automatically for 9x9 board.
+     * 
+     * @param value starting value of cell
+     * @param row row coordinate of cell
+     * @param column column coordinate of cell
+     */
     public Cell(int value, int row, int column) {
         this.value = value;
         this.row = row;
@@ -30,6 +42,9 @@ public class Cell {
         return colGrid + rowGrid * 3;
     }
     
+    /**
+     * Resets cell value to zero
+     */
     public void resetCellValue() {
         this.value = 0;
     }
@@ -37,7 +52,7 @@ public class Cell {
     public int getValue() {
         return value;
     }
-
+    
     public void setValue(int value) {
         this.value = value;
     }

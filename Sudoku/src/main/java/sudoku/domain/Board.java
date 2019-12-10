@@ -8,25 +8,44 @@ package sudoku.domain;
 import java.util.ArrayList;
 import sudoku.logics.BoardHelper;
 
-/**
- *
+ /**
+ * Represent board for Sudoku-game. Upholds all the cells
+ * and uses BoardHelper to manage operations.
+ * 
  * @author hoffrenm
  */
 public class Board {
-
+    
     private ArrayList<Cell> cells;
-    private BoardHelper helper;
+    private final BoardHelper helper;
 
+    /**
+     * initialise 9x9 board filled with 81 zero value cells.  
+     */
     public Board() {
         this.helper = new BoardHelper();
         this.cells = new ArrayList<>(81);
         generateCells();
     }
 
+    /**
+     * Creates new board for game and reveals 
+     * approximately amount of cells provided in parameter.
+     * 
+     * @param numOfcells amount of cells to be revealed
+     */
     public void newSudoku(int numOfcells) {
         generateCells();
         helper.initializeBoard(this, numOfcells);
     }
+    
+    /**
+     * Returns the cell located in provided coordinates.
+     * 
+     * @param rowIndex index of row between 0-8.
+     * @param colIndex index of column between 0-8.
+     * @return cell at coordinates.
+     */
     public Cell getCellInGrid(int rowIndex, int colIndex) {
         return cells.stream()
                 .filter(cell -> cell.getRow() == rowIndex && cell.getColumn() == colIndex)
@@ -45,10 +64,24 @@ public class Board {
         }
     }
     
+    /**
+     * States if game has ended. This method is not concerned whether solution
+     * is correct or not.
+     * 
+     * @return true: if board has no zero values
+     */
     public boolean isFinished() {
         return helper.hasNoEmptyValues(this);
     }
 
+    /**
+     * Sets numeric value to cell. Method does not allow 
+     * setting value that is present in conflicting fields.
+     * 
+     * @param cell cell which value will be changed
+     * @param value value to set
+     * @return true: cell value was changed
+     */
     public boolean setValue(Cell cell, int value) {
         boolean setToRow = helper.canBeInsertedToRow(this, cell, value);
         boolean setToCol = helper.canBeInsertedToColumn(this, cell, value);
@@ -65,12 +98,13 @@ public class Board {
         return false;
     }
 
+    /**
+     * Cells of current board. List is not ordered.
+     * 
+     * @return list of cells in current board.
+     */
     public ArrayList<Cell> getCells() {
         return cells;
-    }
-
-    public void setCells(ArrayList<Cell> cells) {
-        this.cells = cells;
     }
 
     @Override

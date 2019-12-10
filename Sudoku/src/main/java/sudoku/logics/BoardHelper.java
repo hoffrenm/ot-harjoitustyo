@@ -5,6 +5,7 @@ import sudoku.domain.Board;
 import sudoku.domain.Cell;
 
 /**
+ * Holds all the logic to manage board for Sudoku-game
  *
  * @author hoffrenm
  */
@@ -18,8 +19,13 @@ public class BoardHelper {
     
     private String testSudoku = "030200570000300040901047008002003087080600000056010239800020400400098005017005006";
     
-    // Atleast user thinks sudokus are generated randomly
-    // Todo: make them actually random with varying difficulties
+    
+    /**
+     * Initialises a board with amount of randomly revealed values.
+     * 
+     * @param board board that will be initialised
+     * @param numberOfCells number of cells to be revealed
+     */
     public void initializeBoard(Board board, int numberOfCells) {
         Random random = new Random();
         
@@ -35,18 +41,37 @@ public class BoardHelper {
         }
     }
     
+    /**
+     * Preset board for testing
+     * 
+     * @param board board to be used
+     */
     public void initializeTestSudoku(Board board) {
         for (int i = 0; i < testSudoku.length(); i++) {
             board.getCells().get(i).setValue(Character.getNumericValue(testSudoku.charAt(i)));   
         } 
     }
     
+    /**
+     * Determines if all of the cell values has been set.
+     * 
+     * @param board current board
+     * @return true: none of the cell values is zero
+     */
     public boolean hasNoEmptyValues(Board board) {
         return board.getCells()
                 .stream()
                 .noneMatch(c -> c.getValue() == 0);
     }
     
+    /**
+     * Determines if value can be inserted to specific cell in row.
+     * 
+     * @param board current board
+     * @param cell cell which value is going to be changed
+     * @param value value to set to the cell
+     * @return true: if value is not present in same row
+     */
     public boolean canBeInsertedToRow(Board board, Cell cell, int value) {
         return board.getCells()
                 .stream()
@@ -54,6 +79,14 @@ public class BoardHelper {
                 .noneMatch(c -> c.getValue() == value);
     }
 
+    /**
+     * Determines if value can be inserted to specific cell in column.
+     * 
+     * @param board current board
+     * @param cell cell which value is going to be changed
+     * @param value value to set to the cell
+     * @return true: if value is not present in same column
+     */
     public boolean canBeInsertedToColumn(Board board, Cell cell, int value) {
         return board.getCells()
                 .stream()
@@ -61,6 +94,14 @@ public class BoardHelper {
                 .noneMatch(c -> c.getValue() == value);
     }
 
+    /**
+     * Determines if value can be inserted to specific cell in subgrid.
+     * 
+     * @param board current board
+     * @param cell cell which value is going to be changed
+     * @param value value to set to the cell
+     * @return true: if value is not present in same subgrid
+     */
     public boolean canBeInsertedToSubgrid(Board board, Cell cell, int value) {
         return board.getCells()
                 .stream().
