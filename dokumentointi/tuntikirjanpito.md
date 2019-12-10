@@ -20,8 +20,11 @@
 |        |2       | Timer-luokka kuluneen ajan hallinnointiin|
 |        |2       | Ajanmittauksen saattaminen toimimaan UI:ssa
 |        |2       | UI:n toiminnallisuus pelin loppumiselle kun ruudukko on täysi|
-|        |1       | UI:n kosmeettista säätämistä
-|        |0.5     | Sekvenssikaavio käyttäjän syötteelle
-|        |0.5     | 1. release, komentorivikäskyjen täydennys
+|        |1       | UI:n kosmeettista säätämistä|
+|        |0.5     | Sekvenssikaavio käyttäjän syötteelle|
+|        |0.5     | 1. release, komentorivikäskyjen täydennys|
+|10.12   |1       | Javadocin käyttöönotto|
+|        |3       | Score luokka pisteille, FileScore tiedostonkäsittelyyn pisteitä varten. ScoreService UI:n ja tiedostonkäsittelyn väliseen kanssakäymiseen. Logiikkaluokkien testikattavuutta korkeammaksi.
+|        |2       | Käyttöliittymään pistelista ja tarvittava toiminnallisuus pisteiden näyttämiseen ja tallettamiseen.
 |        |        | |
-|yhteensä|33      | |
+|yhteensä|39      | |
