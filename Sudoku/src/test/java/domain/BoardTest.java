@@ -42,6 +42,13 @@ public class BoardTest {
     }
     
     @Test
+    public void newGameClearsAndSetsBoard() {
+        board.getCells().forEach(cell -> cell.setValue(5));
+        board.newSudoku(35);
+        assertFalse(board.isFinished());
+    }
+    
+    @Test
     public void atleastSomeCellValuesAreSet() {
         helper.initializeBoard(board, 35);
         long revealedValues = board.getCells().stream().filter(c -> c.getValue() != 0).count();
