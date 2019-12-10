@@ -82,11 +82,14 @@ public class BoardTest {
     
     @Test
     public void fullBoardIsFinished() {
-        // todo
+        board.getCells().forEach(cell -> cell.setValue(1));
+        assertTrue(board.isFinished());
     }
     
     @Test
     public void unfinishedGameHasMissingValues() {
-        // todo
+        board.getCells().forEach(cell -> cell.setValue(1));
+        board.getCells().get(53).setValue(0);
+        assertFalse(board.isFinished());
     }
 }
