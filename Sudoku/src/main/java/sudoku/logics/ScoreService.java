@@ -5,6 +5,7 @@
  */
 package sudoku.logics;
 
+import java.util.Collections;
 import java.util.List;
 import sudoku.dao.FileScore;
 import sudoku.domain.Score;
@@ -27,9 +28,14 @@ public class ScoreService {
     /**
     * Scores of games that have been read from the file.
     * 
-    * @return scores as list
+    * @return scores as sorted list
     */
     public List<Score> getScores() {
+        Collections.sort(this.scores);
+        
+        if (this.scores.size() > 20) {
+            return scores.subList(0, 20);
+        }
         return scores;
     }
     
