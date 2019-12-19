@@ -18,7 +18,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -40,13 +39,13 @@ public class SudokuUi extends Application {
     private static final int WIDTH = 400;
     private final Board board;
     private final BorderPane root;
-    private final Timer clock;
+    private final Timer timer;
     private final ScoreService scoreService;
 
     public SudokuUi() {
         root = new BorderPane();
         this.board = new Board();
-        this.clock = new Timer();
+        this.timer = new Timer();
         this.scoreService = new ScoreService();
         board.newSudoku(0);
     }
@@ -74,7 +73,7 @@ public class SudokuUi extends Application {
 
         scoresBtn.setOnAction((event) -> {
             root.setCenter(scorePanel(scoreService.getScores()));
-        }); 
+        });
 
         playBtn.setOnAction((event) -> {
             buttons.getChildren().remove(playBtn);
@@ -97,31 +96,28 @@ public class SudokuUi extends Application {
             buttons.getChildren().remove(diff);
             buttons.getChildren().add(0, playBtn);
             board.newSudoku(100);
-            clock.reset();
-            clock.start();
+            timer.start("easy");
             root.setCenter(initialize(board));
         });
         medium.setOnAction(e -> {
             buttons.getChildren().remove(diff);
             buttons.getChildren().add(0, playBtn);
             board.newSudoku(50);
-            clock.reset();
-            clock.start();
+            timer.start("medium");
             root.setCenter(initialize(board));
         });
         hard.setOnAction(e -> {
             buttons.getChildren().remove(diff);
             buttons.getChildren().add(0, playBtn);
             board.newSudoku(35);
-            clock.reset();
-            clock.start();
+            timer.start("hard");
             root.setCenter(initialize(board));
         });
 
         HBox top = new HBox();
         top.setPadding(new Insets(20, 40, 0, 40));
         top.setSpacing(10);
-        top.getChildren().add(clock.getTimer());
+        top.getChildren().add(timer.getTimer());      
 
         exitBtn.setOnAction((event) -> {
             stage.close();
@@ -164,7 +160,6 @@ public class SudokuUi extends Application {
         return majorGrid;
     }
 
-    // todo: refactor this monstrosity
     public StackPane createPanel(Cell cell) {
         StackPane panel = new StackPane();
         panel.setAlignment(Pos.CENTER);
@@ -195,14 +190,10 @@ public class SudokuUi extends Application {
                 }
 
                 if (Pattern.compile("[1-9]{1}").matcher(newValue).matches()) {
-                    // for some reason eventlistener gets fired for every field containing text when 
-                    // another field is focused so this is a workaround
                     if (cell.getValue() == 0) {
                         if (board.setValue(cell, Integer.parseInt(newValue))) {
                             System.out.println("Value has been set: " + cell.toString());
                         } else {
-                            // fancy fading effect to notify user that current value cannot be set to field
-                            // todo: refactor to dedicated method and make it red
                             FadeTransition ft = new FadeTransition(Duration.millis(500), panel);
                             ft.setFromValue(1.0);
                             ft.setToValue(0.5);
@@ -224,12 +215,13 @@ public class SudokuUi extends Application {
                 input.setText(newValue);
 
                 if (board.isFinished()) {
-                    clock.stop();
+                    timer.stop();
                     StackPane box = new StackPane();
                     box.setAlignment(Pos.CENTER);
                     VBox end = new VBox();
                     Label label1 = new Label("Congratulations, Sudoku successfully solved!\n"
-                            + clock.getTimer().getText());
+                            + timer.getTimer().getText() + " \n" 
+                            + "Difficulty: " + timer.getDifficulty());
                     label1.setTextFill(Color.WHITESMOKE);
                     label1.setFont(new Font("Arial", 18));
                     Button submit = new Button("submit");
@@ -238,8 +230,7 @@ public class SudokuUi extends Application {
                     TextField name = new TextField();
 
                     submit.setOnAction(event -> {
-                        scoreService.addResult(name.getText(), clock.getTime(), "placeholder");
-                        clock.reset();
+                        scoreService.addResult(name.getText(), timer.getTime(), timer.getDifficulty());
                         board.newSudoku(0);
                         root.setCenter(initialize(board));
                     });
