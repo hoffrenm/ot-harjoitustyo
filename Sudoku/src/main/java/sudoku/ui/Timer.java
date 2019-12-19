@@ -23,12 +23,14 @@ public class Timer {
     private long seconds;
     private long minutes;
     private Label label;
+    private String difficulty;
 
     public Timer() {
         this.timeline = new Timeline();
         this.seconds = 0;
         this.minutes = 0;
         this.label = new Label("Time: 00:00");
+        this.difficulty = "";
         label.setFont(new Font("Arial", 34));
         label.setTextFill(Color.WHITESMOKE);
         init();
@@ -54,14 +56,16 @@ public class Timer {
         this.label.setText("Time " + minutes + ":" + seconds);
     }
     
-    public void start() {
+    public void start(String difficulty) {
+        reset();
+        setDifficulty(difficulty);
         timeline.play();
     }
     public void stop() {
         timeline.stop();
     }
 
-    public void reset() {
+    private void reset() {
         this.seconds = 0;
         this.minutes = 0;
     }
@@ -74,4 +78,12 @@ public class Timer {
         return label.getText().replace("Time ", "");
     }
 
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+    
 }
