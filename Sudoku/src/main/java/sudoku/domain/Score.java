@@ -10,7 +10,7 @@ package sudoku.domain;
  * 
  * @author Mika Hoffren
  */
-public class Score {
+public class Score implements Comparable<Score> {
     
     private String name;
     private String time;
@@ -49,6 +49,23 @@ public class Score {
 
     public String getLevel() {
         return level;
+    }
+    
+    private int minutes() {
+        return Integer.parseInt(time.split(":")[0]);
+    }
+    
+    private int seconds() {
+        return Integer.parseInt(time.split(":")[1]);
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        if (this.minutes() == o.minutes()) {
+            return this.seconds() - o.seconds();
+        }
+        
+        return this.minutes() - o.minutes();
     }
     
 }
