@@ -6,6 +6,10 @@ liittyvistä testeistä.
 
 ## Testauskattavuus
 
+Testien rivikattavuus on 93% ja haaraumakattavuus 84%.
+
+![Testikattavuus](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/testCoverageFinal.png)
+
 ## Sovelluslogiikka
 
 ### Yksikkötestit
@@ -54,4 +58,6 @@ yhdistävillä integraatiotesteillä
 Testit varmistavat, että tulosten kirjoittaminen ja lukeminen onnistuvat ja ne ovat oikeassa formaatissa.
 
 ## Manuaalinen testaus
+
+Sovelluksen järjestelmätestausta on suoritettu käsin Windows ja Linux-ympäristössä. Sovellus olettaa, että käyttäjällä on kirjoitus- ja lukuoikeus sovelluksen suoritussijainnissa.
 
