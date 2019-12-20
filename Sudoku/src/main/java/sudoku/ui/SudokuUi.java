@@ -35,8 +35,6 @@ import sudoku.logics.ScoreService;
  */
 public class SudokuUi extends Application {
 
-    private static final int HEIGHT = 550;
-    private static final int WIDTH = 400;
     private final Board board;
     private final BorderPane root;
     private final Timer timer;
@@ -117,7 +115,7 @@ public class SudokuUi extends Application {
         HBox top = new HBox();
         top.setPadding(new Insets(20, 40, 0, 40));
         top.setSpacing(10);
-        top.getChildren().add(timer.getTimer());      
+        top.getChildren().add(timer.getTimer());
 
         exitBtn.setOnAction((event) -> {
             stage.close();
@@ -179,7 +177,6 @@ public class SudokuUi extends Application {
                 int newLegth = newValue.length();
                 int oldLength = change.getControlText().length();
 
-                // handle backspace
                 if (newLegth < oldLength) {
                     cell.resetCellValue();
                     return change;
@@ -220,13 +217,15 @@ public class SudokuUi extends Application {
                     box.setAlignment(Pos.CENTER);
                     VBox end = new VBox();
                     Label label1 = new Label("Congratulations, Sudoku successfully solved!\n"
-                            + timer.getTimer().getText() + " \n" 
+                            + timer.getTimer().getText() + " \n"
                             + "Difficulty: " + timer.getDifficulty());
                     label1.setTextFill(Color.WHITESMOKE);
                     label1.setFont(new Font("Arial", 18));
                     Button submit = new Button("submit");
 
                     Label info = new Label("Enter your name to save result");
+                    info.setTextFill(Color.WHITESMOKE);
+                    info.setFont(new Font("Arial", 12));
                     TextField name = new TextField();
 
                     submit.setOnAction(event -> {
