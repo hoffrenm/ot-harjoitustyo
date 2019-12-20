@@ -9,21 +9,20 @@ package sudoku.domain;
  *
  * @author hoffrenm
  */
-
 /**
  * Represent singular cell in Sudoku-game
  */
 public class Cell {
-    
+
     private int value;
     private final int row;
     private final int column;
     private final int subgrid;
-    
+
     /**
-     * Creates a new cell with provided parameters. Subgrid of cell
-     * is calculated automatically for 9x9 board.
-     * 
+     * Creates a new cell with provided parameters. Subgrid of cell is
+     * calculated automatically for 9x9 board.
+     *
      * @param value starting value of cell
      * @param row row coordinate of cell
      * @param column column coordinate of cell
@@ -34,25 +33,25 @@ public class Cell {
         this.column = column;
         this.subgrid = calculateSubgrid(row, column);
     }
-    
+
     private int calculateSubgrid(int row, int col) {
         int rowGrid = row / 3;
         int colGrid = col / 3;
-        
+
         return colGrid + rowGrid * 3;
     }
-    
+
     /**
      * Resets cell value to zero
      */
     public void resetCellValue() {
         this.value = 0;
     }
-    
+
     public int getValue() {
         return value;
     }
-    
+
     public void setValue(int value) {
         this.value = value;
     }
@@ -67,20 +66,6 @@ public class Cell {
 
     public int getSubgrid() {
         return subgrid;
-    }
-
-    @Override
-    public String toString() {
-        return "Cell{" + "value=" + value + ", row=" + row + ", column=" + column + ", subgrid=" + subgrid + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.row;
-        hash = 79 * hash + this.column;
-        hash = 53 * hash + this.subgrid;
-        return hash;
     }
 
     @Override
@@ -101,10 +86,7 @@ public class Cell {
         if (this.column != other.column) {
             return false;
         }
-        if (this.subgrid != other.subgrid) {
-            return false;
-        }
-        return true;
+
+        return this.subgrid == other.subgrid;
     }
-    
 }

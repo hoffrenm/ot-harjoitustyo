@@ -15,40 +15,41 @@ import sudoku.domain.Cell;
  * @author hoffrenm
  */
 public class CellTest {
-    
+
     Cell cell;
-    
+
     @Before
     public void setUp() {
         this.cell = new Cell(0, 3, 7);
     }
+
     @Test
     public void rowIsCorrect() {
         assertEquals(3, cell.getRow());
     }
-    
+
     @Test
     public void columnIsCorrect() {
         System.out.println(cell.getSubgrid());
         assertEquals(7, cell.getColumn());
     }
-    
+
     @Test
     public void subgridIsCalculatedCorrectly() {
         assertEquals(5, cell.getSubgrid());
     }
-    
+
     @Test
     public void startValueIsZero() {
         assertEquals(0, cell.getValue());
     }
-    
+
     @Test
     public void valueCanBeChanged() {
         cell.setValue(1);
         assertEquals(1, cell.getValue());
     }
-    
+
     @Test
     public void valueCanBeZeroed() {
         cell.setValue(6);
@@ -56,5 +57,5 @@ public class CellTest {
         cell.resetCellValue();
         assertEquals(0, cell.getValue());
     }
-    
+
 }

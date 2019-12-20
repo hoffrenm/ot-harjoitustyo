@@ -34,35 +34,35 @@ public class BoardHelperTest {
         boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 2);
         assertTrue(canBePlaced);
     }
-    
+
     @Test
     public void RowExistingValueIsRejected() {
         Cell cellToBePlaced = new Cell(0, 1, 2);
         boolean canBePlaced = helper.canBeInsertedToRow(board, cellToBePlaced, 4);
         assertFalse(canBePlaced);
     }
-    
+
     @Test
     public void ColumnMissingValueCanBeSet() {
         Cell cellToBePlaced = new Cell(0, 6, 5);
         boolean canBePlaced = helper.canBeInsertedToColumn(board, cellToBePlaced, 9);
         assertTrue(canBePlaced);
     }
-    
+
     @Test
     public void ColumnExistingValueIsRejected() {
         Cell cellToBePlaced = new Cell(0, 6, 5);
         boolean canBePlaced = helper.canBeInsertedToColumn(board, cellToBePlaced, 7);
         assertFalse(canBePlaced);
     }
-    
+
     @Test
     public void subgridMissingValueCanBeSet() {
         Cell cellToBePlaced = new Cell(0, 8, 0);
         boolean canBePlaced = helper.canBeInsertedToSubgrid(board, cellToBePlaced, 6);
         assertTrue(canBePlaced);
     }
-    
+
     @Test
     public void subgridExistingValueIsRejected() {
         Cell cellToBePlaced = new Cell(0, 4, 4);

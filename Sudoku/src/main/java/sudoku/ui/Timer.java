@@ -52,15 +52,16 @@ public class Timer {
             seconds = 0;
             minutes++;
         }
-        
+
         this.label.setText("Time " + minutes + ":" + seconds);
     }
-    
+
     public void start(String difficulty) {
         reset();
         setDifficulty(difficulty);
         timeline.play();
     }
+
     public void stop() {
         timeline.stop();
     }
@@ -73,7 +74,7 @@ public class Timer {
     public Label getTimer() {
         return this.label;
     }
-    
+
     public String getTime() {
         return label.getText().replace("Time ", "");
     }
@@ -85,5 +86,5 @@ public class Timer {
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
-    
+
 }

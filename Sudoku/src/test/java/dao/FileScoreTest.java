@@ -40,7 +40,7 @@ public class FileScoreTest {
             fw.write("chimpanzee;12:34;easy\n");
             fw.write("toad;0:45;hard\n");
             fw.write("unicorn;2:04;medium");
-            
+
             fw.flush();
             fw.close();
         } catch (IOException e) {
@@ -60,7 +60,7 @@ public class FileScoreTest {
         System.out.println(fileScore.getScores().size());
         assertEquals(3, fileScore.getScores().size());
     }
-    
+
     @Test(expected = Test.None.class)
     public void scoresAreSavedToFile() {
         fileScore.getScores().add(new Score("monkey", "40:52,", "easy"));
@@ -68,12 +68,12 @@ public class FileScoreTest {
         fileScore.getScores().add(new Score("dog", "5:41,", "easy"));
         fileScore.getScores().add(new Score("cat", "0:11,", "easy"));
         fileScore.save(fileScore.getScores());
-        
+
         fileScore = new FileScore(testFile.getAbsolutePath());
-        
+
         assertEquals(7, fileScore.getScores().size());
     }
-    
+
     @After
     public void tearDown() {
         testFile.delete();

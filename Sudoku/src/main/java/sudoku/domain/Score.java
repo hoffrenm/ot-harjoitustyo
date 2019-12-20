@@ -7,18 +7,18 @@ package sudoku.domain;
 
 /**
  * Score entry for single successfully solved sudoku.
- * 
+ *
  * @author Mika Hoffren
  */
 public class Score implements Comparable<Score> {
-    
+
     private String name;
     private String time;
     private String level;
 
     /**
      * Generates Score entry that can be stored to file.
-     * 
+     *
      * @param name name of user
      * @param time time at completion of a game
      * @param level difficulty level of game
@@ -30,9 +30,9 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * returns score as comma separated values for file writing in 
+     * returns score as comma separated values for file writing in
      * "name;time;level" format.
-     * 
+     *
      * @return score as csv
      */
     public String toFileFormat() {
@@ -50,11 +50,11 @@ public class Score implements Comparable<Score> {
     public String getLevel() {
         return level;
     }
-    
+
     private int minutes() {
         return Integer.parseInt(time.split(":")[0]);
     }
-    
+
     private int seconds() {
         return Integer.parseInt(time.split(":")[1]);
     }
@@ -64,8 +64,8 @@ public class Score implements Comparable<Score> {
         if (this.minutes() == o.minutes()) {
             return this.seconds() - o.seconds();
         }
-        
+
         return this.minutes() - o.minutes();
     }
-    
+
 }
