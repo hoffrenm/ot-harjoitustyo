@@ -46,7 +46,7 @@ public class SudokuUi extends Application {
         root = new BorderPane();
         this.board = new Board();
         this.timer = new Timer();
-        this.scoreService = new ScoreService();
+        this.scoreService = new ScoreService("scores.txt");
         board.newSudoku(0);
     }
 
