@@ -17,11 +17,11 @@ import sudoku.domain.Score;
  */
 public class ScoreService {
     
-    List<Score> scores;
-    FileScore fileScore;
+    private List<Score> scores;
+    private FileScore fileScore;
 
-    public ScoreService() {
-        this.fileScore = new FileScore("scores.txt");
+    public ScoreService(String filename) {
+        this.fileScore = new FileScore(filename);
         this.scores = fileScore.getScores();
     }
     
