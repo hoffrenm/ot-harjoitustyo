@@ -16,6 +16,7 @@ import org.junit.rules.TemporaryFolder;
 import sudoku.dao.FileScore;
 import static org.junit.Assert.*;
 import sudoku.domain.Score;
+import sudoku.logics.ScoreService;
 
 /**
  *
@@ -28,6 +29,7 @@ public class FileScoreTest {
 
     public File testFile;
     public FileScore fileScore;
+    public ScoreService scoreService;
 
     @Before
     public void setUp() throws Exception {
@@ -48,18 +50,18 @@ public class FileScoreTest {
         fileScore = new FileScore(testFile.getAbsolutePath());
     }
 
-    @Test
+    @Test(expected = Test.None.class)
     public void canBeInitializedWithExistingFile() {
         assertNotNull(fileScore);
     }
 
-    @Test
+    @Test(expected = Test.None.class)
     public void scoresFromFileAreStoredToList() {
         System.out.println(fileScore.getScores().size());
         assertEquals(3, fileScore.getScores().size());
     }
     
-    @Test
+    @Test(expected = Test.None.class)
     public void scoresAreSavedToFile() {
         fileScore.getScores().add(new Score("monkey", "40:52,", "easy"));
         fileScore.getScores().add(new Score("donkey", "2:32,", "easy"));
@@ -71,7 +73,7 @@ public class FileScoreTest {
         
         assertEquals(7, fileScore.getScores().size());
     }
-
+    
     @After
     public void tearDown() {
         testFile.delete();
