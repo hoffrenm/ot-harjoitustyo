@@ -6,6 +6,7 @@
 package logics;
 
 import java.io.File;
+import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
@@ -71,4 +72,10 @@ public class ScoreServiceTest {
     public void scoresWillBeSaved() throws Exception {
         scoreService.saveScores();
     }
+
+    @After
+    public void tearDown() {
+        testFile.delete();
+    }
+
 }
