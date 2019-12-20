@@ -60,6 +60,9 @@ public class FileScore {
             for (Score score : scores) {
                 writer.write(score.toFileFormat());
             }
+            
+            writer.flush();
+            writer.close();
         } catch (Exception e) {
             System.out.println("Exception in writing file: " + e.getMessage());
         }
