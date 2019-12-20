@@ -44,7 +44,7 @@ public class Score implements Comparable<Score> {
     }
 
     public String getTime() {
-        return time.replace("Time ", "");
+        return time;
     }
 
     public String getLevel() {
