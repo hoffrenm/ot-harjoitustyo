@@ -46,7 +46,6 @@ public class FileScore {
                 scores.add(new Score(name, time, level));
             }
         } catch (Exception e) {
-            System.out.println("Exception in reading file: " + e.getMessage());
         }
     }
 
@@ -65,7 +64,6 @@ public class FileScore {
             writer.flush();
             writer.close();
         } catch (Exception e) {
-            System.out.println("Exception in writing file: " + e.getMessage());
         }
     }
 
