@@ -12,11 +12,15 @@ Sudoku on logiikkapeli, jossa pelaaja pyrkii asettelemaan numerot 1-9 9x9 ruuduk
 
 ## Dokumentaatio
 
-[vaatimusmäärittely](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
+[Käyttöohje](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
 
-[tuntikirjanpito](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
+[Testausdokumentti](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/testaus.md)
 
-[arkkitehtuuri](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+[Arkkitehtuuri](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+
+[Vaatimusmäärittely](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
+
+[Tuntikirjanpito](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
 ## Komentorivikäskyt
 Käskyt tulee suorittaa projektin juurihakemistossa.
