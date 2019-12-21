@@ -15,13 +15,13 @@ Sovellus on jaoteltu pakkauksiin, jotka kuvaavat luokkien ominaisuuksia
 
 ![Pakkausrakenne](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/package.png)
 
-Käyttöliittymä käyttää sekä 
-[sudoku.domainin](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/domain) sekä 
-[sudoku.logics](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/logics) pakkauksien luokkia. Käyttöliittymän ruudukon tila on sidoksissa sovelluslogiikan [Boardin](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/domain/Board.java) tilaan, jonka pohjalta se renderöidään. Lisäksi käyttöliittymä käyttää [ScoreServicea](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/logics/ScoreService.java) pelin lopputuloksen tallettamiseen sekä pistelistan hakemiseen.
-
 ### Luokkakaavio
 
 ![Luokkakaavio](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/packageClassDiagram.png)
+
+Käyttöliittymä käyttää sekä 
+[sudoku.domainin](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/domain) sekä 
+[sudoku.logics](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/logics) pakkauksien luokkia. Käyttöliittymän ruudukon tila on sidoksissa sovelluslogiikan [Boardin](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/domain/Board.java) tilaan, jonka pohjalta se renderöidään. Lisäksi käyttöliittymä käyttää [ScoreServicea](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/logics/ScoreService.java) pelin lopputuloksen tallettamiseen sekä pistelistan hakemiseen. Käyttöliittymä itsessään ei säilö mitään ruudukkoon tai pisteisiin liittyvää tietoa vaan renderöi edellä mainittujen luokkien avulla haetun tiedon.
 
 ### Sekvenssikaaviot päätoiminnallisuuksista
 
@@ -49,4 +49,4 @@ name3;59:59;medium
 ...
 ```
 
-Tiedosto luetaan kertaalleen sovelluksen käynnistyksessä ja pistetilastoihin lisätyt tulokset kirjoitetaan tiedostoon kerran sovelluksen sulkeutuessa.
+Tiedosto luetaan kertaalleen sovelluksen käynnistyksessä ja pistetilastoihin lisätyt tulokset kirjoitetaan tiedostoon kerran sovelluksen sulkeutuessa. Koska sovellus kirjoittaa tiedot sovelluksen sulkeutuessa, on mahdollista, että sovelluksen äkillinen kaatuminen hävittää kyseisen session tulokset.
