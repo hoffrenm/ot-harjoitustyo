@@ -189,7 +189,6 @@ public class SudokuUi extends Application {
                 if (Pattern.compile("[1-9]{1}").matcher(newValue).matches()) {
                     if (cell.getValue() == 0) {
                         if (board.setValue(cell, Integer.parseInt(newValue))) {
-                            System.out.println("Value has been set: " + cell.toString());
                         } else {
                             FadeTransition ft = new FadeTransition(Duration.millis(500), panel);
                             ft.setFromValue(1.0);

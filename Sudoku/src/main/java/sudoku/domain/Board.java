@@ -90,9 +90,6 @@ public class Board {
         boolean setToCol = helper.canBeInsertedToColumn(this, cell, value);
         boolean setToSub = helper.canBeInsertedToSubgrid(this, cell, value);
 
-        System.out.println("row: " + setToRow + " col: " + setToCol + " sub: " + setToSub);
-        System.out.println(cell + " toInsert :" + value);
-
         if (setToRow && setToCol && setToSub) {
             cell.setValue(value);
             return true;
