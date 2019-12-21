@@ -1,10 +1,15 @@
 # Käyttöohje
 
-## Sovelluksen käynnistäminen
+## Sovelluksen asentaminen
 
+Lataa uusimman [julkaisun](https://github.com/hoffrenm/ot-harjoitustyo/releases) sudoku.jar tiedosto
+
+Suorita seuraava komento komentorivillä ladatun jar-tiedoston hakemistossa.
 ```
 java -jar sudoku.jar
 ```
+
+## Sovelluksen käyttö
 
 ### Aloitusruutu
 Sovellus käynnistyy seuraavanlaiseen ikkunaan.
