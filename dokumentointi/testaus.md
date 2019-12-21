@@ -10,9 +10,11 @@ Testien rivikattavuus on 93% ja haaraumakattavuus 84%.
 
 ![Testikattavuus](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/testCoverageFinal.png)
 
-## Sovelluslogiikka
+## Automatisoitu testaus
 
-### Yksikkötestit
+### Sovelluslogiikka
+
+#### Yksikkötestit
 Sovelluksen komponenteista eli 
 [sudoku.domain](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/domain) 
 pakkauksen luokista, joilla ei ole merkittävästi logiikkaa, on ollut suoraviivaisinta testata yksikkötestein.
@@ -35,9 +37,9 @@ siten, että tallennus tapahtuu oikeassa muodossa ja pisteitä vertaileva compar
 Tiedostoon kirjoittavaa luokkaa 
 [FileScore](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/dao/FileScore.java) 
 on testattu Junitin tarjoamalla väliaikaisella TemporaryFolder-säännön avulla siten, että tiedoston lukeminen ja kirjoittaminen 
-onnistuu.
+onnistuvat.
 
-### Integraatiotestit
+#### Integraatiotestit
 Edellytys ruudukon oikeanlaiselle toiminnalle on 
 [BoardHelper](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/logics/BoardHelper.java) 
 joka tarjoaa apumetodeja lukujen sijoittamiseen ruudukkoon. Ominaisuuksia on testattu integraatiotesteillä 
@@ -57,7 +59,12 @@ yhdistävillä integraatiotesteillä
 [ScoreServiceTest](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/test/java/logics/ScoreServiceTest.java). 
 Testit varmistavat, että tulosten kirjoittaminen ja lukeminen onnistuvat ja ne ovat oikeassa formaatissa.
 
+### Käyttöliittymä
+
+Käyttöliittymälle ei ole automatisoituja testejä.
+
 ## Manuaalinen testaus
 
-Sovelluksen järjestelmätestausta on suoritettu käsin Windows ja Linux-ympäristössä. Sovellus olettaa, että käyttäjällä on kirjoitus- ja lukuoikeus sovelluksen suoritussijainnissa.
+### Järjestelmätestaus
+Sovelluksen järjestelmätestausta on suoritettu käsin Windows ja Linux-ympäristössä. Sovellus olettaa, että käyttäjällä on kirjoitus- ja lukuoikeus sovelluksen suoritussijainnissa. Käyttöliittymän toiminta on testattu toimivaksi kaikissa niissä tilanteissa, joita käyttöliittymä antaa käyttäjän tehdä.
 
