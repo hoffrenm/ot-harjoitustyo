@@ -26,5 +26,10 @@
 |10.12   |1       | Javadocin käyttöönotto|
 |        |3       | Score luokka pisteille, FileScore tiedostonkäsittelyyn pisteitä varten. ScoreService UI:n ja tiedostonkäsittelyn väliseen kanssakäymiseen. Logiikkaluokkien testikattavuutta korkeammaksi.
 |        |2       | Käyttöliittymään pistelista ja tarvittava toiminnallisuus pisteiden näyttämiseen ja tallettamiseen.
+|19.12   |2       | Vaikeusasteen tallennus, pistelistan näyttö ja järjestäminen |
+|20.12   |3       | Käyttöliittymän korjailua, yksikkötestit pisteille ja tiedostoon kirjoittamiselle. Integraatiotestit pisteiden tallennukselle ja lukemiselle |
+|        |2       | Testidokumentin aloitus, arkkitehtuuridokumentin päivitys ja kuvien lisäys. |
+|        |1       | Käyttöohje |
+|21.12   |1       | Dokumentaation täydennystä |
 |        |        | |
-|yhteensä|39      | |
+|yhteensä|48      | |
