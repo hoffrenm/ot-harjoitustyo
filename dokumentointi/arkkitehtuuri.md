@@ -17,13 +17,19 @@ Sovellus on jaoteltu pakkauksiin, jotka kuvaavat luokkien ominaisuuksia
 
 Käyttöliittymä käyttää sekä 
 [sudoku.domainin](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/domain) sekä 
-[sudoku.logics](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/logics) pakkauksien luokkia. Käyttöliittymän ruudukon tila on sidoksissa sovelluslogiikan [Boardin](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/domain/Board.java) tilaan, jonka pohjalta se renderöidään. Lisäksi käyttöliittymä käyttää [ScoreServicea](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/logics/ScoreService.java) pelin lopputuloksen tallettamiseen.
+[sudoku.logics](https://github.com/hoffrenm/ot-harjoitustyo/tree/master/Sudoku/src/main/java/sudoku/logics) pakkauksien luokkia. Käyttöliittymän ruudukon tila on sidoksissa sovelluslogiikan [Boardin](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/domain/Board.java) tilaan, jonka pohjalta se renderöidään. Lisäksi käyttöliittymä käyttää [ScoreServicea](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/Sudoku/src/main/java/sudoku/logics/ScoreService.java) pelin lopputuloksen tallettamiseen sekä pistelistan hakemiseen.
 
 ### Luokkakaavio
 
 ![Luokkakaavio](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/packageClassDiagram.png)
 
 ### Sekvenssikaaviot päätoiminnallisuuksista
+
+#### Pelaaja syöttää sallitun luvun kenttään
+
+![Oikeasiirto](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/sequence1.png)
+
+#### Pelaaja on ratkaissut pelin ja syöttää nimimerkkinsä pisteiden talletusta varten
 
 ## Tietojen tallennus
 
