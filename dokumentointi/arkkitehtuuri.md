@@ -33,6 +33,10 @@ Käyttöliittymä käyttää sekä
 
 ![tiedostonluku](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/fileread.png)
 
+### Käyttöliittymä
+
+Käyttöliittymä on toteutettu JavaFX:n avulla. Sovelluksen rungon muodostaa BorderPane, jonka solmuihin on asetettu halutut elementit. Top-solmu on varattu ajan näyttämiseen ja Bottom-solmu hallitsee painikkeita. Ikkunan keskellä sijaitsevaan Center-solmuun on asetettu peliruudukko ja sen tilalle voidaan vaihtaa pistetilasto painiketta painamalla. Peliruudukko itsessään on toteutettu GridPanen sisällä olevista GridPaneista, jotka kuvaavat peliruudukon soluja.
+
 ## Tietojen tallennus
 
 Sovellus tallettaa pistetilastot tekstitiedostoon. Tiedosto sijaitsee oletusarvoisesti projektin suoritushakemistossa ja mikäli tiedostoa ei ole olemassa, luo sovellus sen automaattisesti nimellä *scores.txt*
@@ -44,3 +48,5 @@ name2;12:34;hard
 name3;59:59;medium
 ...
 ```
+
+Tiedosto luetaan kertaalleen sovelluksen käynnistyksessä ja pistetilastoihin lisätyt tulokset kirjoitetaan tiedostoon kerran sovelluksen sulkeutuessa.
