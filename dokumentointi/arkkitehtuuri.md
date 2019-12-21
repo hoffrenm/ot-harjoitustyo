@@ -29,7 +29,9 @@ Käyttöliittymä käyttää sekä
 
 ![Oikeasiirto](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/sequence1.png)
 
-#### Pelaaja on ratkaissut pelin ja syöttää nimimerkkinsä pisteiden talletusta varten
+#### Aikaisemmat pisteet luetaan tiedosta sovelluksen käynnistyksessä
+
+![tiedostonluku](https://github.com/hoffrenm/ot-harjoitustyo/blob/master/dokumentointi/pictures/fileread.png)
 
 ## Tietojen tallennus
 
