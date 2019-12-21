@@ -53,6 +53,9 @@ public class Board {
                 .get();
     }
 
+    /**
+     * Generate 81 zero value cells and add them to board.
+     */
     private void generateCells() {
         this.cells = new ArrayList<>();
 
