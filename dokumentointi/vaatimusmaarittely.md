@@ -10,12 +10,12 @@ Sovelluksella on vain yhden tyyppinen käyttäjä: normaali käyttäjä, ts. pel
 
 ## Toiminnallisuudet
 
-- [x] (tehty) pelaajalle generoidaan peliruudukko, johon numeroita voi täyttää. Osa numeroista on asetettu valmiiksi. Ruudukko on 3x3 osaruudukoista koostuva.
-- [x] (tehty) perusversiossa sovellus ei anna tehdä vääriä siirtoja.
-- [x] (tehty viikko5) Pelaaja voi valita vaikeusasteen
-- [x] (tehty viikko5) Peli päättyy kun ruudukko on täytetty sääntöjen mukaisesti
-- [x] (tehty viikko5) pelaaja pelaa kelloa vastaan.
-- [ ] Onnistuneesta ratkaisusta pelaajaa pyydetään syöttämään nimimerkki, joka talletetaan ajan kanssa tilastoihin.
+- [x] pelaajalle generoidaan peliruudukko, johon numeroita voi täyttää. Osa numeroista on asetettu valmiiksi. Ruudukko on 3x3 osaruudukoista koostuva.
+- [x] perusversiossa sovellus ei anna tehdä vääriä siirtoja.
+- [x] Pelaaja voi valita vaikeusasteen
+- [x] Peli päättyy kun ruudukko on täytetty sääntöjen mukaisesti
+- [x] pelaaja pelaa kelloa vastaan.
+- [x] Onnistuneesta ratkaisusta pelaajaa pyydetään syöttämään nimimerkki, joka talletetaan ajan kanssa tilastoihin.
 
 ## kehitysideoita
 
