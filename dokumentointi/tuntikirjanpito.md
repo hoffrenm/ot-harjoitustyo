@@ -30,6 +30,7 @@
 |20.12   |3       | Käyttöliittymän korjailua, yksikkötestit pisteille ja tiedostoon kirjoittamiselle. Integraatiotestit pisteiden tallennukselle ja lukemiselle |
 |        |2       | Testidokumentin aloitus, arkkitehtuuridokumentin päivitys ja kuvien lisäys. |
 |        |1       | Käyttöohje |
-|21.12   |1       | Dokumentaation täydennystä |
+|21.12   |1       | Dokumentaation täydennystä, loppurelease |
+|22.12   |1       | Dokumentoinnin viimeistely |
 |        |        | |
-|yhteensä|48      | |
+|yhteensä|49      | |
